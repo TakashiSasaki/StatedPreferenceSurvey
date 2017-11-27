@@ -1,0 +1,111 @@
+<section id="webanketo01">
+   <strong><span class="room1_name"></span> vs. <span class="room2_name"></span>（共に5階建・エレベーター有り物件）</strong>
+   <h3>Q.　<span class="room1_name"></span>と<span class="room2_name"></span>のうち、実際にあなたが入居すると思う方を選択してください。<br />
+   　　それぞれの物件の詳細は、表の中の詳細ボタンをクリックして確認してください。<br />　　（現在のあなたの経済状況を考えて回答してください）</h3>
+   <br />
+   <table border="1" width="50%" height="200">
+      <tr>
+         <td width="150" height="80" align="center">家賃・敷金・礼金</td>
+         <td width="150" height="80" align="center">物件の場所</td>
+         <td width="150" height="80" align="center">間取り・部屋向き・階数</td>
+         <td width="150" height="80" align="center">部屋設備</td>
+         <td width="150" height="80" align="center">築年数</td>
+      </tr>
+      <tr>
+         <td width="150" height="80" align="center"><button onclick="show_zokusei01();">詳細</button></td>
+         <td width="150" height="80" align="center"><button onclick="show_zokusei02();">詳細</button></td>
+         <td width="150" height="80" align="center"><button onclick="show_zokusei03();">詳細</button></td>
+         <td width="150" height="80" align="center"><button onclick="show_zokusei04();">詳細</button></td>
+         <td width="150" height="80" align="center"><button onclick="show_zokusei05();">詳細</button></td>
+      </tr>
+   </table>
+   <br clear="all"><br />
+   <hr>
+   <h3>上記の二つの物件から実際に入居すると思う方を選択してください</h3>
+   <div id="choice">
+     <input type="radio" name="物件" value="X" onclick="show_select_primary_attribute(); show_desirability();"><span class="room1_name"></span>
+     <input type="radio" name="物件" value="Y" onclick="show_select_primary_attribute(); show_desirability();"><span class="room2_name"></span>
+   </div>
+   <div id="select_primary_attribute" style="display:none">
+     <h3>物件を選択するにあたって決め手となったカテゴリーはどれでしたか？</h3>
+     <select name="一番考慮した属性">
+        <option value="家賃・敷金・礼金">家賃・敷金・礼金</option>
+        <option value="物件の場所">物件の場所</option>
+        <option value="間取り・部屋向き・階数">間取り・部屋向き・階数</option>
+        <option value="部屋設備">部屋設備</option>
+        <option value="築年数">築年数</option>
+     </select>
+   </div>
+   <div id="desirability" style="display:none">
+     <h3>仮に選んだ物件が実在する場合、その物件と現在の居住物件のどちらが望ましいですか？</h3>
+     <input type="radio" name="望ましさ" value="今選んだ物件">今選んだ物件
+     <input type="radio" name="望ましさ" value="現在の居住物件">現在の居住物件
+   </div>
+   <br /><br />
+   <button onclick="show_webanketo02();">次へ</button>
+   <script>
+     function show_select_primary_attribute(){
+       var element = document.getElementById("select_primary_attribute");
+       google.script.run.recordTransition(start_time, (new Date()).getTime(), "selected");
+       element.style.display = "block";
+     }
+     function show_desirability(){
+       var element = document.getElementById("desirability");
+       element.style.display = "block";
+     }
+     function show_zokusei01(){
+       google.script.run.recordTransition(start_time, (new Date()).getTime(), "zokusei01");
+       var sections = document.getElementsByTagName("section");
+       for(var i=0; i<sections.length; ++i) {
+         sections[i].style.display="none";
+       }
+       document.getElementById("zokusei01").style.display="block";       
+     }
+     function show_zokusei02(){
+       google.script.run.recordTransition(start_time, (new Date()).getTime(), "zokusei02");
+       var sections = document.getElementsByTagName("section");
+       for(var i=0; i<sections.length; ++i) {
+         sections[i].style.display="none";
+       }
+       document.getElementById("zokusei02").style.display="block";       
+     }
+     function show_zokusei03(){
+       google.script.run.recordTransition(start_time, (new Date()).getTime(), "zokusei03");
+       var sections = document.getElementsByTagName("section");
+       for(var i=0; i<sections.length; ++i) {
+         sections[i].style.display="none";
+       }
+       document.getElementById("zokusei03").style.display="block";       
+     }
+     function show_zokusei04(){
+       google.script.run.recordTransition(start_time, (new Date()).getTime(), "zokusei04");
+       var sections = document.getElementsByTagName("section");
+       for(var i=0; i<sections.length; ++i) {
+         sections[i].style.display="none";
+       }
+       document.getElementById("zokusei04").style.display="block";       
+     }
+     function show_zokusei05(){
+       google.script.run.recordTransition(start_time, (new Date()).getTime(), "zokusei05");
+       var sections = document.getElementsByTagName("section");
+       for(var i=0; i<sections.length; ++i) {
+         sections[i].style.display="none";
+       }
+       document.getElementById("zokusei05").style.display="block";       
+     }
+     function show_webanketo02(){
+       google.script.run.recordChoice(start_time, (new Date()).getTime(), room1[0], room2[0], 
+         document.querySelector('input[name="物件"]:checked').value,
+         document.querySelector('select[name="一番考慮した属性"]').value,
+         document.querySelector('input[name="望ましさ"]:checked').value);
+         if(comparison_pairs.length > 0) {
+           alert("あと " + comparison_pairs.length + " 回です。がんばって！”");
+           renewComparisonPair();
+           setTimeout(show_webanketo01, 500);
+         } else {
+           alert("ご協力ありがとうございました。これで終わりです。");
+           window.location.href = "https://goo.gl/L33NBb";
+         }
+     }
+   </script>
+</section>

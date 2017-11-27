@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <style>
+    <!--
+      #webanketo00 { background-color : #ffffff; }
+      #webanketo01 { background-color : #ffffff; display:none;}      
+      #zokusei01 { background-color : #ffffff; display:none;}      
+      #zokusei02 { background-color : #ffffff; display:none;}      
+      #zokusei02 { background-color : #ffffff; display:none;}      
+      #zokusei03 { background-color : #ffffff; display:none;}      
+      #zokusei04 { background-color : #ffffff; display:none;}      
+      #zokusei05 { background-color : #ffffff; display:none;}
+      .room1_name { font-size: 2em;}
+      .room2_name { font-size: 2em;}
+      button {font-size:2em}
+      select {font-size:2em}
+    -->
+  </style>
+  <body>
+      <?!=HtmlService.createHtmlOutputFromFile("webanketo00").getContent();?>
+      <?!=HtmlService.createHtmlOutputFromFile("webanketo01").getContent();?>
+      <?!=HtmlService.createHtmlOutputFromFile("zokusei01").getContent();?>
+      <?!=HtmlService.createHtmlOutputFromFile("zokusei02").getContent();?>
+      <?!=HtmlService.createHtmlOutputFromFile("zokusei03").getContent();?>
+      <?!=HtmlService.createHtmlOutputFromFile("zokusei04").getContent();?>
+      <?!=HtmlService.createHtmlOutputFromFile("zokusei05").getContent();?>
+  </body>
+  <hr>
+   <section>
+      アンケート<a href="https://goo.gl/L33NBb">https://goo.gl/L33NBb</a> / 
+      調査結果<a href="https://goo.gl/DUlFqc">https://goo.gl/DUlFqc</a>
+      
+   </section>
+  <script>
+    start_time = (new Date()).getTime();
+    
+    google.script.run.withSuccessHandler(
+      function(values){
+        rooms = {};
+        for(var i=0; i<values.length; ++i) {
+          rooms[values[i][0]] = values[i];
+        }
+      }
+    ).getRooms();
+    
+    google.script.run.withSuccessHandler(
+      function(values) {
+        comparison_pairs = values;
+      }
+    ).getComparisonPairs();
+    
+    function renewComparisonPair(){
+      var comparison_pair = comparison_pairs[0];
+      comparison_pairs.shift();
+      room1 = rooms[comparison_pair[0]];
+      room2 = rooms[comparison_pair[1]];
+      document.getElementById("家賃・共益費1").textContent = room1[1];
+      document.getElementById("家賃・共益費2").textContent = room2[1];
+      document.getElementById("敷金・礼金1").textContent = room1[2];
+      document.getElementById("敷金・礼金2").textContent = room2[2];
+      document.getElementById("間取り1").textContent = room1[3];
+      document.getElementById("間取り2").textContent = room2[3];
+      document.getElementById("部屋向き1").textContent = room1[4];
+      document.getElementById("部屋向き2").textContent = room2[4];
+      document.getElementById("階数1").textContent = room1[5];
+      document.getElementById("階数2").textContent = room2[5];
+      document.getElementById("浴室1").textContent = room1[6];
+      document.getElementById("浴室2").textContent = room2[6];
+      document.getElementById("洗面所1").textContent = room1[7];
+      document.getElementById("洗面所2").textContent = room2[7];
+      document.getElementById("洗濯機1").textContent = room1[8];
+      document.getElementById("洗濯機2").textContent = room2[8];
+      document.getElementById("築年数1").textContent = room1[9];
+      document.getElementById("築年数2").textContent = room2[9]; 
+      document.getElementById("エリア1").src = room1[10];
+      document.getElementById("エリア2").src = room2[10];
+      room1_names = document.getElementsByClassName("room1_name");
+      for(var i=0; i<room1_names.length; ++i) {
+        room1_names[i].textContent = room1[0];
+      }
+      room2_names = document.getElementsByClassName("room2_name");
+      for(var i=0; i<room2_names.length; ++i) {
+        room2_names[i].textContent = room2[0];
+      }
+      
+      var choice_div = document.getElementById("choice");
+      for(var i=0; i<choice_div.children.length; ++i) {
+        choice_div.children[i].checked = false;
+      }
+      
+      var desirability_div = document.getElementById("desirability");
+      for(var i=0; i<desirability_div.children.length; ++i) {
+        desirability_div.children[i].checked = false;
+      }
+      
+      var e = document.getElementById("select_primary_attribute");
+      e.style.display="none";
+      
+      var e = document.getElementById("desirability");
+      e.style.display="none";
+    }
+    
+    setTimeout(renewComparisonPair, 1000);
+  </script>
+</html>
