@@ -1,0 +1,89 @@
+<section id="prank">
+   <h3>Q.　あなたはどのルートが使いやすいと思いますか。<br />
+   　　1番目と2番目に使いやすいと思うルートをお答えください。</h3>  
+   <br />   
+   <table border="1" width="75%" height="200">
+      <tr>
+         <td width="150" height="80" align="center">
+         <select name="順位" id="prank101" onchange="recordRank(this)">
+          <option value="順位">順位</option><option value="1" id="rank011">1位</option><option value="2" id="rank012">2位</option><option value="3" id="rank013">3位</option>
+                                           <option value="4" id="rank014">4位</option><option value="5" id="rank015">5位</option><option value="6" id="rank013">6位</option></select></td>
+         
+         <td width="150" height="80" align="center">
+         <select name="順位" id="prank102" onchange="recordRank(this)">
+          <option value="順位">順位</option><option value="1" id="rank011">1位</option><option value="2" id="rank012">2位</option><option value="3" id="rank013">3位</option>
+                                           <option value="4" id="rank014">4位</option><option value="5" id="rank015">5位</option><option value="6" id="rank013">6位</option></select></td>
+         
+         <td width="150" height="80" align="center">
+         <select name="順位" id="prank103" onchange="recordRank(this)">
+          <option value="順位">順位</option><option value="1" id="rank011">1位</option><option value="2" id="rank012">2位</option><option value="3" id="rank013">3位</option>
+                                           <option value="4" id="rank014">4位</option><option value="5" id="rank015">5位</option><option value="6" id="rank013">6位</option></select></td>
+         
+         <td width="150" height="80" align="center">
+         <select name="順位" id="prank104" onchange="recordRank(this)">
+          <option value="順位">順位</option><option value="1" id="rank011">1位</option><option value="2" id="rank012">2位</option><option value="3" id="rank013">3位</option>
+                                           <option value="4" id="rank014">4位</option><option value="5" id="rank015">5位</option><option value="6" id="rank013">6位</option></select></td>
+         
+         <td width="150" height="80" align="center">
+         <select name="順位" id="prank105" onchange="recordRank(this)">
+          <option value="順位">順位</option><option value="1" id="rank011">1位</option><option value="2" id="rank012">2位</option><option value="3" id="rank013">3位</option>
+                                           <option value="4" id="rank014">4位</option><option value="5" id="rank015">5位</option><option value="6" id="rank013">6位</option></select></td>
+         
+         <td width="150" height="80" align="center">
+         <select name="順位" id="prank106" onchange="recordRank(this)">
+          <option value="順位">順位</option><option value="1" id="rank011">1位</option><option value="2" id="rank012">2位</option><option value="3" id="rank013">3位</option>
+                                           <option value="4" id="rank014">4位</option><option value="5" id="rank015">5位</option><option value="6" id="rank013">6位</option></select></td>
+      </tr>
+      <?!=getTr("choice00"); ?>
+   </table>
+   <br clear="all"><br />
+    <hr>
+   <button id="button01" onclick="show_pbest00();">次へ</button>
+   <hr>
+   <script>
+     function show_pbest00(){    
+       var flag = [false,false,false,false,false,false,false];
+       flag[document.getElementById("prank101").value] = true;
+       flag[document.getElementById("prank102").value] = true;
+       flag[document.getElementById("prank103").value] = true;
+       flag[document.getElementById("prank104").value] = true;
+       flag[document.getElementById("prank105").value] = true;
+       flag[document.getElementById("prank106").value] = true;
+       for(var i=1; i<=6; ++i) {
+        if(flag[i] == false) {
+          alert("全ての順位を選択して下さい。");
+           return;
+         }
+       }
+//       var flag0 = //[false,false,false,false,false,false,false];
+//       flag0[document.getElementById("rank011").value] = 1;
+//       flag0[document.getElementById("rank012").value] = 2;
+//       flag0[document.getElementById("rank013").value] = 3;
+//
+//       for(var i=1; i<=3; ++i) {
+//        if(flag0[i] == 1) {
+//          alert("全ての順位を選択して下さい。");
+//          return;
+//         }
+//       }
+       start_pbest00 = (new Date()).getTime();              
+       var sections = document.getElementsByTagName("section");
+       for(var i=0; i<sections.length; ++i) {
+         sections[i].style.display="none";
+       }
+       document.getElementById("pbest00").style.display="block";
+  }
+
+     function recordRank(element){
+//       var start_time = start_time;            //誰が
+       var click_time = (new Date()).getTime();  //いつ
+       var element_id = element.id;              //何を
+       var element_value = element.value;        //値
+       var element_checked = element.checked;    //チェック状態
+       google.script.run.withFailureHandler(function(){
+       }).withSuccessHandler(function(){
+       }).recordRank(start_time, start_prank,click_time, element_id, element_value, element_checked);
+     } recordRank(element);
+   </script>
+
+</section>

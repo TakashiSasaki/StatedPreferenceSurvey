@@ -1,0 +1,40 @@
+<section id="hosoku2">
+   <strong>経路選択に関するアンケート</strong>
+   <br />
+   <hr>
+   <h3>個人情報のご記入ありがとうございました。<br />
+   <br />
+   次のページより、経路の利用意向の把握調査を行います。<br />
+    <br />
+    なお、ご記入にあたっては以下の点に注意してください。<br />
+    <br />
+    ●あなたは、車を運転し一人旅をする予定を立てていると想定します<br />
+    ●提示された情報以外の内容は、すべて同一のものとします<br />
+    <br />
+    まずは調査に慣れて頂くために、練習問題を8問用意しています。<br />
+    「次へ」を押し、回答に進んでください。<br />
+    <br />
+    その後、本調査として同様の問題を合計36問伺います。
+    </h3>
+   <hr>
+   <button onclick="show_pchoice();">次へ</button>
+   <hr>
+   <script>
+     function show_pchoice(){
+       var sections = document.getElementsByTagName("section");
+       start_pchoice = (new Date()).getTime();
+       for(var i=0; i<sections.length; ++i) {
+         sections[i].style.display="none";
+       }
+       document.getElementById("pchoice").style.display="block";
+     }
+   </script>
+
+</section>
+
+
+
+   
+
+
+

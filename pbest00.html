@@ -1,0 +1,81 @@
+<section id="pbest00">
+   <h3>Q.　あなたはどのルートが使いやすいと思いますか。<br />
+   　　使いやすいと思うルートを<div0>2個</div0>お答えください。</h3>
+     <br />     
+   <table border="1" width="75%" height="200">
+   <tr>
+         <td width="150" height="80" align="center"><input type="checkbox" name="pbest001" value="1" id="checkbox051" onclick="recordBest(this);"></td>
+         <td width="150" height="80" align="center"><input type="checkbox" name="pbest002" value="2" id="checkbox052" onclick="recordBest(this);"></td>
+         <td width="150" height="80" align="center"><input type="checkbox" name="pbest003" value="3" id="checkbox053" onclick="recordBest(this);"></td>
+         <td width="150" height="80" align="center"><input type="checkbox" name="pbest004" value="4" id="checkbox054" onclick="recordBest(this);"></td>
+         <td width="150" height="80" align="center"><input type="checkbox" name="pbest005" value="5" id="checkbox055" onclick="recordBest(this);"></td>
+         <td width="150" height="80" align="center"><input type="checkbox" name="pbest006" value="6" id="checkbox056" onclick="recordBest(this);"></td>
+  </tr>
+   <?!=getTr("choice00"); ?>        
+   </table>
+   <br />
+    <div></div>
+   <style>
+   div0 { color:red; }  
+   </style>
+   <br clear="all"><br />
+   <hr>
+   <button onclick="show_hosoku3();">次へ</button>
+   <script>
+
+
+   $(":checkbox").click(function(){
+   n = $(":checked").length　-7;
+   $("div").text(n + "コチェックされています。");
+   });
+//   function alert05(){
+//	count = 0;
+//	for (i1=0; i1<6; i1++) if (document.myFORM.elements[i1].checked) count++;
+//        if (count < 2 & count >3) ;
+//        alert("2コチェックしてください。");
+//        return;
+//        }
+
+//    ck_suu=6; //チェックボックスの数です。
+//    function chg(){
+//    v=0;
+//    for (i1=0; i1<ck_suu; i1++){
+//    if (document.myFORM.elements[i1].checked){v++;
+ //   }
+ //   }
+//    if (v = 1){
+//    alert("チェックの数は " 2 "個です。");
+//    return;
+//    msg ="チェックの数は " + v + "個です。";
+//    document.myFORM.tBox.value = msg;
+ //   }
+//}
+
+   function show_hosoku3(){
+       var sections = document.getElementsByTagName("section");
+       for(var i=0; i<sections.length; ++i) {
+       sections[i].style.display="none";
+       }
+       document.getElementById("hosoku3").style.display="block";                 
+     }
+     function recordBest(element){
+//       var start_time = start_time;            //誰が
+       var click_time = (new Date()).getTime();  //いつ
+       var element_id = element.id;              //何を
+       var element_value = element.value;        //値
+       var element_checked = element.checked;    //チェック状態
+       google.script.run.withFailureHandler(function(){
+       }).withSuccessHandler(function(){
+       }).recordBest(start_time, start_pbest00,click_time, element_id, element_value, element_checked);
+     } recordBest(element);
+
+   </script>
+</section>
+
+
+
+
+
+   <style>
+   divk { color:red; }
+   </style>

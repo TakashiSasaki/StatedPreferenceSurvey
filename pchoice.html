@@ -1,0 +1,41 @@
+<section id="pchoice">
+   <h3>Q.　あなたはどのルートが使いやすいと思いますか。<br />
+   　　この中から，1つだけお選びください。</h3> 
+   <br />  
+   <table border="1" width="75%" height="200">
+      <tr>
+         <td width="150" height="80" align="center"><input type="radio" name="ルート" value="1" id="choice101" onclick="recordChoice(this)"></td>
+         <td width="150" height="80" align="center"><input type="radio" name="ルート" value="2" id="choice102" onclick="recordChoice(this)"></td>
+         <td width="150" height="80" align="center"><input type="radio" name="ルート" value="3" id="choice103" onclick="recordChoice(this)"></td>
+         <td width="150" height="80" align="center"><input type="radio" name="ルート" value="4" id="choice104" onclick="recordChoice(this)"></td>
+         <td width="150" height="80" align="center"><input type="radio" name="ルート" value="5" id="choice105" onclick="recordChoice(this)"></td>
+         <td width="150" height="80" align="center"><input type="radio" name="ルート" value="6" id="choice106" onclick="recordChoice(this)"></td>
+      </tr>
+      <?!=getTr("choice00"); ?>
+   </table>
+   <br clear="all"><br />
+   <hr>
+   <button onclick="show_prank();" id="button00">次へ</button>
+    <hr>
+   <script>
+     function show_prank(){
+       start_prank = (new Date()).getTime();
+       var sections = document.getElementsByTagName("section");
+       for(var i=0; i<sections.length; ++i) {
+         sections[i].style.display="none";
+       }
+       document.getElementById("prank").style.display="block";
+     } 
+
+     function recordChoice(element){
+//       var start_time = start_time;            //誰が
+       var click_time = (new Date()).getTime();  //いつ
+       var element_id = element.id;              //何を
+       var element_value = element.value;        //値
+       var element_checked = element.checked;    //チェック状態
+       google.script.run.withFailureHandler(function(){
+       }).withSuccessHandler(function(){
+       }).recordChoice(start_time, start_pchoice,click_time, element_id, element_value, element_checked);
+     } recordChoice(element);
+  </script>
+</section>

@@ -1,0 +1,89 @@
+<section id="kojin">
+   <strong>経路選択に関するアンケート</strong>
+   <br /><br />
+   <strong>下記事項にご記入ください。</strong>  
+   <hr>
+   <h3>Q1.あなたの性別をご記入ください。<divk>※入力必須</divk></h3>
+   <input type="radio" name="性別" value="1">男性
+   <input type="radio" name="性別" value="2">女性
+   <hr>
+   <h3>Q2.あなたの年齢をご記入ください。<divk>※入力必須</divk></h3>
+   <input type="text" name="年齢" id="age" size="20" >歳
+   <hr> 
+   <h3>Q3.あなたのご職業をご記入ください。<divk>※入力必須</divk></h3>
+   <input type="radio" name="職業" value="1">学生（高校生以下）
+   <input type="radio" name="職業" value="2">学生（大学生・大学院生）
+   <input type="radio" name="職業" value="3">自営業・会社員・公務員
+   <input type="radio" name="職業" value="4">専業主婦・主夫
+   <input type="radio" name="職業" value="5">パート・フリーター
+   <input type="radio" name="職業" value="6">その他   
+   <input type="text" name="職業その他" size="20">
+   <hr>
+   <h3>Q4.あなたの取得免許をご記入ください。（複数回答可）<divk>※入力必須</divk></h3>
+   <input type="checkbox" name="免許なし" value="0" onclick="value=1">持ってない<br />
+   <input type="checkbox" name="普通免許" value="0" onclick="value=1">普通免許
+   <input type="checkbox" name="大型免許" value="0" onclick="value=1">大型免許
+   <input type="checkbox" name="中型免許" value="0" onclick="value=1">中型免許
+   <input type="checkbox" name="準中型免許" value="0" onclick="value=1">準中型免許   
+   <input type="checkbox" name="大型特殊免許" value="0" onclick="value=1">大型特殊免許
+   <input type="checkbox" name="小型特殊免許" value="0" onclick="value=1">小型特殊免許
+   <input type="checkbox" name="大型二輪免許" value="0" onclick="value=1">大型二輪免許
+   <input type="checkbox" name="普通二輪免許" value="0" onclick="value=1">普通二輪免許
+   <input type="checkbox" name="原付免許" value="0" onclick="value=1">原付免許のみ
+   <input type="checkbox" name="免許その他" value="0" onclick="value=1">その他   
+   <input type="text" name="免他理由" size="20">
+   <hr>
+   <h3>Q5.あなたの自動車の運転頻度をご記入ください。<divk>※入力必須</divk></h3>
+   <input type="radio" name="運転頻度" value="1">運転できない<br />
+   <input type="radio" name="運転頻度" value="2">毎日
+   <input type="radio" name="運転頻度" value="3">週に3,4回程度
+   <input type="radio" name="運転頻度" value="4">週に1,2回程度
+   <input type="radio" name="運転頻度" value="5">月に1回程度
+   <input type="radio" name="運転頻度" value="6">年に数回程度
+   <input type="radio" name="運転頻度" value="7">その他
+   <input type="text" name="運転頻度その他" size="20">
+   <hr>
+   <button onclick="record_kojin();show_hosoku2()">次へ</button>
+   
+   <style>
+   divk { color:red; }
+   </style>
+   
+   <script>
+     function record_kojin(){
+       google.script.run.recordKojin(
+         start_time,
+         document.querySelector('input[name="性別"]:checked').value,
+         document.querySelector('input[name="年齢"]').value,
+         document.querySelector('input[name="職業"]:checked').value,
+         document.querySelector('input[name="職業その他"]').value,
+         document.querySelector('input[name="免許なし"]').value,
+         document.querySelector('input[name="普通免許"]').value,
+         document.querySelector('input[name="大型免許"]').value,
+         document.querySelector('input[name="中型免許"]').value,
+         document.querySelector('input[name="準中型免許"]').value,
+         document.querySelector('input[name="大型特殊免許"]').value,
+         document.querySelector('input[name="小型特殊免許"]').value,
+         document.querySelector('input[name="大型二輪免許"]').value,
+         document.querySelector('input[name="普通二輪免許"]').value,
+         document.querySelector('input[name="原付免許"]').value,
+         document.querySelector('input[name="免許その他"]').value,
+         document.querySelector('input[name="免他理由"]').value,
+         document.querySelector('input[name="運転頻度"]:checked').value,
+         document.querySelector('input[name="運転頻度その他"]').value
+         );
+     }
+
+     function show_hosoku2(){       
+       var sections = document.getElementsByTagName("section");
+       for(var i=0; i<sections.length; ++i) {
+         sections[i].style.display="none";
+       }
+       document.getElementById("hosoku2").style.display="block";
+     }
+     
+   </script>
+
+</section>
+
+

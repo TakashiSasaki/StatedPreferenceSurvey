@@ -1,0 +1,27 @@
+<section id="hosoku3">
+   <strong>経路選択に関するアンケート</strong>
+   <br />
+   <hr>
+   <h3>練習問題は終了です。<br />
+   <br />
+   <br />
+   次のページより、本調査を行います。<br />
+   
+   </h3>
+   <hr>
+   <button onclick="show_choice06()">次へ</button>
+   <hr>
+   <script>
+     function show_choice06(){
+       var sections = document.getElementsByTagName("section");
+       start_pchoice = (new Date()).getTime();
+       for(var i=0; i<sections.length; ++i) {
+         sections[i].style.display="none";
+       }
+       document.getElementById("choice06").style.display="block";
+     }
+   </script>
+
+</section>
+
+
